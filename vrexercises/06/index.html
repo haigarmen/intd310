@@ -1,46 +1,29 @@
-<!DOCTYPE html>
 <html>
-
-<head>
-    <meta charset="utf-8">
-    <title>EX06: Text in VR</title>
-    <meta name="description" content="360&deg; Image Gallery - A-Frame">
+  <head>
     <script src="https://aframe.io/releases/1.1.0/aframe.min.js"></script>
-    <script src="https://unpkg.com/aframe-event-set-component@5/dist/aframe-event-set-component.min.js"></script>
-    <script src="https://unpkg.com/aframe-layout-component@5.3.0/dist/aframe-layout-component.min.js"></script>
-    <script src="https://unpkg.com/aframe-template-component@3.2.1/dist/aframe-template-component.min.js"></script>
-    <script src="https://unpkg.com/aframe-proxy-event-component@2.1.0/dist/aframe-proxy-event-component.min.js"></script>
-</head>
-
-<body>
+    <script src="https://unpkg.com/aframe-animation-component@3.2.1/dist/aframe-animation-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-particle-system-component@1.0.x/dist/aframe-particle-system-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-extras.ocean@%5E3.5.x/dist/aframe-extras.ocean.min.js"></script>
+    <script src="https://unpkg.com/aframe-gradient-sky@1.0.4/dist/gradientsky.min.js"></script>
+    <script src="https://unpkg.com/aframe-extras.tube@%5E3.5.x/dist/aframe-extras.tube.min.js"></script>
+  </head>
+  <body>
     <a-scene>
-        <a-assets>
-            <img id="tsitsernakaberd" crossorigin="anonymous" src="https://i.imgur.com/Kto7YK9.jpg">
-        </a-assets>
+      <a-entity id="rain" particle-system="preset: rain; color: #24CAFF; particleCount: 5000"></a-entity>
 
-        <!-- 360-degree image. -->
-        <a-sky id="image-360" radius="10" src="#tsitsernakaberd"></a-sky>
+      <a-entity id="sphere" geometry="primitive: sphere"
+                material="color: #EFEFEF; shader: flat"
+                position="0 0.15 -5"
+                light="type: point; intensity: 5"
+                animation="property: position; easing: easeInOutQuad; dir: alternate; dur: 1000; to: 0 -0.10 -5; loop: true"></a-entity>
 
-        <!-- Title page -->
-        <a-entity position="0 0 0" rotation"0 0 0">
-            <a-entity text="color: white; align: center; font: aileronsemibold;
-              value: Welcome to " scale="3 3 3" position="0 1.6 -2" geometry="primitive: plane; width: .9; height: auto" material="transparent: true; opacity: 0.25"></a-entity>
-            <a-entity text="color: white; align: center; font: aileronsemibold; value: TSITSERNAKABERD" scale="7 7 7" position="0 1.4 -2"></a-entity>
-            <a-entity text="color: white; align: center; font: aileronsemibold;
-              value: A VR EXPERIENCE " scale="3 3 3" position="0 1.1 -2" geometry="primitive: plane; width: .9; height: auto" material="transparent: true; opacity: 0.25"></a-entity>
-        </a-entity>
+      <a-entity id="ocean" ocean="density: 20; width: 50; depth: 50; speed: 4"
+                material="color: #9CE3F9; opacity: 0.75; metalness: 0; roughness: 1"
+                rotation="-90 0 0"></a-entity>
 
-        <!-- Camera + cursor. -->
-        <a-entity id="camera" camera look-controls wasd-controls position="0 1.6 0">
-            <!--         <a-cursor
-          id="cursor"
-          animation__click="property: scale; startEvents: click; from: 0.1 0.1 0.1; to: 1 1 1; dur: 150"
-          animation__fusing="property: fusing; startEvents: fusing; from: 1 1 1; to: 0.1 0.1 0.1; dur: 1500"
-          event-set__mouseenter="_event: mouseenter; color: springgreen"
-          event-set__mouseleave="_event: mouseleave; color: black"
-          raycaster="objects: .link"></a-cursor> -->
-        </a-entity>
+    <a-entity id="sky" geometry="primitive: sphere; radius: 5000" material="shader: gradient; topColor: 235 235 245; bottomColor: 185 185 210"                  scale="-1 1 1"></a-entity>
+
+      <a-entity id="light" light="type: ambient; color: #888"></a-entity>
     </a-scene>
-</body>
-
+  </body>
 </html>

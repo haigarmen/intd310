@@ -39,22 +39,19 @@
              animation__fadeback="property: components.material.material.color; type: color; from: #000; to: #FFF; dur: 300; startEvents: animationcomplete__fade"></a-sky>
 
       <!-- Image links. -->
-      <a-entity id="links" layout="type: line; margin: 1.5" position="0 -1 -4">
+      <a-entity id="links" layout="type: line; margin: 1.5" position="0 -1 -8">
         <a-entity template="src: #link" data-src="#cubes" data-thumb="#cubes-thumb"></a-entity>
         <a-entity template="src: #link" data-src="#city" data-thumb="#city-thumb"></a-entity>
         <a-entity template="src: #link" data-src="#sechelt" data-thumb="#sechelt-thumb"></a-entity>
       </a-entity>
 
       <!-- Camera + cursor. -->
-      <a-entity id="camera" camera look-controls>
-        <a-cursor
-          id="cursor"
-          animation__click="property: scale; startEvents: click; from: 0.1 0.1 0.1; to: 1 1 1; dur: 150"
-          animation__fusing="property: fusing; startEvents: fusing; from: 1 1 1; to: 0.1 0.1 0.1; dur: 1500"
-          event-set__mouseenter="_event: mouseenter; color: springgreen"
-          event-set__mouseleave="_event: mouseleave; color: black"
-          raycaster="objects: .link"></a-cursor>
-      </a-entity>
+
+      <a-camera position="0 1.6 0">
+          <a-entity cursor="fuse: true; fuseTimeout: 500" position="0 0 -1" geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03" material="color: black; shader: flat">
+          </a-entity>
+      </a-camera>
+
     </a-scene>
   </body>
 </html>
